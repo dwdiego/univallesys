@@ -1,0 +1,28 @@
+{
+  "name": "univallesys",
+  "authors": [
+    "dwdiego <diegocosta@designwade.com>"
+  ],
+  "description": "",
+  "main": "assets/js/main.js",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "twitter-bootstrap-wizard": "^1.4.2",
+    "jquery": "^3.2.1",
+    "angular-route": "^1.6.4"
+  },
+  "devDependencies": {
+    "angular-route": "^1.6.4"
+  }
+}

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test1</title>
+<link href="/assets/components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+</head>
+
+<body ng-app="univallesys">
+
+	<div id="rootwizard" class="container">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container text-center">
+					<div class="row">
+						<div class="col-md-6">
+							<ul>
+								<li><a href="#tab1" data-toggle="tab">Início</a></li>
+								<li><a href="#tab2" data-toggle="tab">Meio</a></li>
+								<li><a href="#tab3" data-toggle="tab">Fim</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="bar" class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="0"
+				aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane" id="tab1" ng-controller="GrupoController as ctrlGrupo">
+				  <div class="panel-heading"><span class="lead">Cadastro do Grupo de Produtos </span></div>
+	              <div class="container">
+	                  <form ng-submit="ctrlGrupo.submit()" name="myFormGrupo" class="form-horizontal">
+	                      <input type="hidden" ng-model="ctrlGrupo.grupo.id" />
+	                      <div class="row">
+	                          <div class="form-group col-md-12">
+	                              <label class="col-md-2 control-lable" for="file">Código da Empresa</label>
+	                              <div class="col-md-7">
+	                                  <input type="text" ng-model="ctrlGrupo.grupo.company_id" name="company_id" class="company_id form-control input-sm" placeholder="Digite o código da Empresa" required ng-minlength="3"/>
+	                                  <div class="has-error" ng-show="myFormGrupo.$dirty">
+	                                      <span ng-show="myFormGrupo.company_id.$error.required">Este campo é obrigatório!</span>
+	                                      <span ng-show="myFormGrupo.company_id.$error.minlength">Digite pelo menos três caracteres.</span>
+	                                      <span ng-show="myFormGrupo.company_id.$invalid">Valor inválido! </span>
+	                                  </div>
+	                              </div>
+	                          </div>
+	                      </div>
+	                      <div class="row">
+	                          <div class="form-group col-md-12">
+	                              <label class="col-md-2 control-lable" for="file">Grupo de Produto</label>
+	                              <div class="col-md-7">
+	                                  <input type="text" name="product_group_id" ng-model="ctrlGrupo.grupo.product_group_id" class="form-control product_group_id input-sm" placeholder="Digite o grupo do produto" required/>
+	                                  <div class="has-error" ng-show="myFormGrupo.$dirty">
+	                                      <span ng-show="myFormGrupo.product_group_id.$error.required">Este campo é obrigatório!</span>
+	                                  </div>
+	                              </div>
+	                          </div>
+	                      </div>
+	
+	                      <div class="row">
+	                          <div class="form-actions floatRight">
+	                              <input type="submit"  value="{{!ctrlGrupo.grupo.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myFormGrupo.$invalid">
+	                              <button type="button" ng-click="ctrlGrupo.reset()" class="btn btn-warning btn-sm" ng-disabled="myFormGrupo.$pristine">Limpar</button>
+	                          </div>
+	                      </div>
+	                  </form>
+	              </div>		
+			
+			</div>
+			<div class="tab-pane" id="tab2" ng-controller="ProdutoController as ctrl">
+				<div class="panel-heading"><span class="lead">Cadastro do Produto </span></div>
+	              <div class="container">
+	                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+	                      <input type="hidden" ng-model="ctrl.produto.codigo" />
+	                      <div class="row">
+	                          <div class="form-group col-md-12">
+	                              <label class="col-md-2 control-lable" for="file">Nome</label>
+	                              <div class="col-md-7">
+	                                  <input type="text" ng-model="ctrl.produto.nome" name="pname" class="pname form-control input-sm" placeholder="Digite o nome do Produto" required ng-minlength="3"/>
+	                                  <div class="has-error" ng-show="myForm.$dirty">
+	                                      <span ng-show="myForm.pname.$error.required">Este campo é obrigatório!</span>
+	                                      <span ng-show="myForm.pname.$error.minlength">Digite pelo menos três caracteres.</span>
+	                                      <span ng-show="myForm.pname.$invalid">Valor inválido! </span>
+	                                  </div>
+	                              </div>
+	                          </div>
+	                      </div>
+	                        
+	                      
+	                      <div class="row">
+	                          <div class="form-group col-md-12">
+	                              <label class="col-md-2 control-lable" for="file">Preço</label>
+	                              <div class="col-md-7">
+	                                  <input type="text" name="preco" ng-model="ctrl.produto.preco" class="form-control preco input-sm" placeholder="Digite o preço do Produto" required/>
+	                                  <div class="has-error" ng-show="myForm.$dirty">
+	                                      <span ng-show="myForm.preco.$error.required">Este campo é obrigatório!</span>
+	                                  </div>
+	                              </div>
+	                          </div>
+	                      </div>
+	
+	                      <div class="row">
+	                          <div class="form-actions floatRight">
+	                              <input type="submit"  value="{{!ctrl.produto.codigo ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+	                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar</button>
+	                          </div>
+	                      </div>
+	                  </form>
+	              </div>
+			</div>
+			<div class="tab-pane" id="tab3">
+				<div class="container" ng-controller="ProdutoController as ctrl">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-heading">
+							<span class="lead">Lista de Produtos </span>
+						</div>
+						<div class="tablecontainer">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Nome</th>
+										<th>Preço</th>
+										<th>Data da Compra</th>
+										<th width="20%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="p in ctrl.produtos">
+										<td><span ng-bind="p.codigo"></span></td>
+										<td><span ng-bind="p.nome"></span></td>
+										<td><span ng-bind="p.preco"></span></td>
+										<td><span ng-bind="p.dataDaCompra"></span></td>
+										<td>
+											<button type="button" ng-click="ctrl.edit(p.codigo)" data-toggle="modal" data-target="#modalEditProduto"
+												class="btn btn-success custom-width">Editar</button>
+											<button type="button" ng-click="ctrl.remove(p.codigo)"
+												class="btn btn-danger custom-width">Excluir</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Modal -->
+						<div id="modalEditProduto" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+						
+						    <!-- Modal content-->
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						        <h4 class="modal-title">Atualizar Produto</h4>
+						      </div>
+						      <div class="modal-body">
+						        <div class="container">
+				                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+				                      <input type="hidden" ng-model="ctrl.produto.codigo" />
+				                      <div class="row">
+				                          <div class="form-group col-md-6">
+				                              <label class="col-md-2 control-lable" for="file">Código</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" ng-model="ctrl.produto.codigo" disabled name="code" class="pcode form-control input-sm"/>
+				                              </div>
+				                          </div>
+				                      </div>
+				                      <div class="row">
+				                          <div class="form-group col-md-6">
+				                              <label class="col-md-2 control-lable" for="file">Nome</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" ng-model="ctrl.produto.nome" name="pname" class="pname form-control input-sm" placeholder="Digite o nome do Produto" required ng-minlength="3"/>
+				                                  <div class="has-error" ng-show="myForm.$dirty">
+				                                      <span ng-show="myForm.pname.$error.required">Este campo é obrigatório!</span>
+				                                      <span ng-show="myForm.pname.$error.minlength">Digite pelo menos três caracteres.</span>
+				                                      <span ng-show="myForm.pname.$invalid">Valor inválido! </span>
+				                                  </div>
+				                              </div>
+				                          </div>
+				                      </div>
+				                        
+				                      
+				                      <div class="row">
+				                          <div class="form-group col-md-6">
+				                              <label class="col-md-2 control-lable" for="file">Preço</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" name="preco" ng-model="ctrl.produto.preco" class="form-control preco input-sm" placeholder="Digite o preço do Produto" required/>
+				                                  <div class="has-error" ng-show="myForm.$dirty">
+				                                      <span ng-show="myForm.preco.$error.required">Este campo é obrigatório!</span>
+				                                  </div>
+				                              </div>
+				                          </div>
+				                      </div>
+				                       <div class="row">
+				                          <div class="form-group col-md-6">
+				                              <label class="col-md-2 control-lable" for="file">Data da Compra</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" ng-model="ctrl.produto.dataDaCompra" disabled name="pdata" class="pdata form-control input-sm"/>
+				                              </div>
+				                          </div>
+				                      </div>
+				
+				                      <div class="row">
+				                          <div class="form-actions floatRight">
+				                              <input type="submit"  value="{{!ctrl.produto.codigo ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+				                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar</button>
+				                          </div>
+				                      </div>
+				                  </form>
+				              </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+						      </div>
+						    </div>
+						
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="container" ng-controller="GrupoController as ctrlGrupo">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-heading">
+							<span class="lead">Lista de Grupos de Produtos </span>
+						</div>
+						<div class="tablecontainer">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Código da Empresa</th>
+										<th>Grupo de Produto</th>
+										<th width="20%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="g in ctrlGrupo.grupos">
+										<td><span ng-bind="g.id"></span></td>
+										<td><span ng-bind="g.company_id"></span></td>
+										<td><span ng-bind="g.product_group_id"></span></td>
+										<td>
+											<button type="button" ng-click="ctrlGrupo.edit(g.id)" data-toggle="modal" data-target="#modalEditGrupo"
+												class="btn btn-success custom-width">Editar</button>
+											<button type="button" ng-click="ctrlGrupo.remove(g.id)"
+												class="btn btn-danger custom-width">Excluir</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Modal -->
+						<div id="modalEditGrupo" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+						
+						    <!-- Modal content-->
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						        <h4 class="modal-title">Atualizar Grupo de Produtos</h4>
+						      </div>
+						      <div class="modal-body">
+						        <div class="container">
+				                  <form ng-submit="ctrlGrupo.submit()" name="myFormGrupo" class="form-horizontal">
+				                      <input type="hidden" ng-model="ctrlGrupo.grupo.id" />
+				                      <div class="row">
+				                          <div class="form-group col-md-7">
+				                              <label class="col-md-3 control-lable" for="file">Código</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" ng-model="ctrlGrupo.grupo.id" disabled name="gcode" class="gcode form-control input-sm"/>
+				                              </div>
+				                          </div>
+				                      </div>
+				                      <div class="row">
+				                          <div class="form-group col-md-7">
+				                              <label class="col-md-3 control-lable" for="file">Código Empresa</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" ng-model="ctrlGrupo.grupo.company_id" name="company_id" class="company_id form-control input-sm" placeholder="Digite o código da Empresa" required ng-minlength="3"/>
+				                                  <div class="has-error" ng-show="myFormGrupo.$dirty">
+				                                      <span ng-show="myFormGrupo.company_id.$error.required">Este campo é obrigatório!</span>
+				                                      <span ng-show="myFormGrupo.company_id.$error.minlength">Digite pelo menos três caracteres.</span>
+				                                      <span ng-show="myFormGrupo.company_id.$invalid">Valor inválido! </span>
+				                                  </div>
+				                              </div>
+				                          </div>
+				                      </div>
+				                      <div class="row">
+				                          <div class="form-group col-md-7">
+				                              <label class="col-md-3 control-lable" for="file">Grupo de Produto</label>
+				                              <div class="col-md-7">
+				                                  <input type="text" name="product_group_id" ng-model="ctrlGrupo.grupo.product_group_id" class="form-control product_group_id input-sm" placeholder="Digite o grupo do produto" required/>
+				                                  <div class="has-error" ng-show="myFormGrupo.$dirty">
+				                                      <span ng-show="myFormGrupo.product_group_id.$error.required">Este campo é obrigatório!</span>
+				                                  </div>
+				                              </div>
+				                          </div>
+				                      </div>
+				
+				                      <div class="row">
+				                          <div class="form-actions floatRight">
+				                              <input type="submit"  value="{{!ctrlGrupo.grupo.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myFormGrupo.$invalid">
+				                              <button type="button" ng-click="ctrlGrupo.reset()" class="btn btn-warning btn-sm" ng-disabled="myFormGrupo.$pristine">Limpar</button>
+				                          </div>
+				                      </div>
+				                  </form>
+				              </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+						      </div>
+						    </div>
+						
+						  </div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<ul class="pager wizard">
+				<li class="previous first" style="display: none;"><a href="#">First</a></li>
+				<li class="previous"><a href="#">Voltar</a></li>
+				<li class="next last" style="display: none;"><a href="#">Last</a></li>
+				<li class="next"><a href="#">Avançar</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="/assets/components/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="/assets/components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script src="/assets/js/app.js"></script>
+	<script src="/assets/js/service/grupo_service.js"></script>
+	<script src="/assets/js/controller/grupo_controller.js"></script>
+	<script src="/assets/js/service/produto_service.js"></script>
+	<script src="/assets/js/controller/produto_controller.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#rootwizard').bootstrapWizard({
+				onNext : function(tab, navigation, index) {
+					if (index == 2) {
+						// Make sure we entered the name
+						/*if (!$('.pname').val()) {
+							alert('Preencha os dados do produto para continuar.');
+							$('.pname').focus();
+							return false;
+						}else if(!$('.preco').val()){
+							alert('Preencha os dados do produto para continuar.');
+							$('.preco').focus();
+							return false;
+						}*/
+					}
+
+					// Set the name for the next tab
+					//$('#tab3').html('Hello, ' + $('#name').val());
+
+				},
+				onTabShow : function(tab, navigation, index) {
+					var $total = navigation.find('li').length;
+					var $current = index + 1;
+					var $percent = ($current / $total) * 100;
+					$('#rootwizard .progress-bar').css({
+						width : $percent + '%'
+					});
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
