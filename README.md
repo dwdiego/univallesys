@@ -23,7 +23,7 @@ the application is accessible at the following URL:
 #### REST ####
 ##### Services #####
 
-Url           |Verb          | Description
+Endpoint          |Method         | Description
 --------------|------------- | -------------
 /produtos         |GET          | get all products  
 /produto| PUT| save product 
